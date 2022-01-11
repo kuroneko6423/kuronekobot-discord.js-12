@@ -269,6 +269,16 @@ client.on('ready', async () => {
                     "name": "cronさん",
                     "value": "web | https://cron.jp",
                     "inline": false
+		                },
+                {
+                    "name": "Nabrさん",
+                    "value": "よろしく",
+                    "inline": false
+		                },
+                {
+                    "name": "forestblackさん",
+                    "value": "web | https://komoro.work/",
+                    "inline": false
                 },
                 {
                     "name": "YHさん",
@@ -334,7 +344,9 @@ client.on("message", message => {
     .addField("黒猫ちゃん(管理者&運営)", "https://profile.kuroneko6423.com/")　//Embedのフィールド
     .addField("Yuukiさん(モデレーター)", "https://kuroneko6423.com/Yuuki")　//Embedのフィールド
     .addField("cronさん(共同開発者)", "https://cron.jp")　//Embedのフィールド
+    .addField("Nabrさん(共同開発者)", "WEBサイト未作成")　//Embedのフィールド
     .addField("YHさん(共同開発者)", "WEBサイト未作成")　//Embedのフィールド
+    .addField("forestblackさん(共同開発者)", "https://komoro.work/")　//Embedのフィールド
     .setFooter("KuronekoServer")　//Embedのフッター
     .setColor("RANDOM")　//Embedのカラー
     .setTimestamp();
@@ -508,28 +520,6 @@ client.on('message', async message => {
   if (message.content == 'あけおめ') {
     message.channel.send('あけおめ！ :boom::boom::boom: ')
   }
-})
-
-client.on("message", message => {
-    if(message.content === "!forestblackServerRule") { //もしメッセージが「!embed」なら
-    const embed = new discord.MessageEmbed()
-    .setTitle("minecraft Server 利用規約")　//Embedのタイトル
-    .setURL("https://kuroneko6423.com/Minecraft")　//タイトルに埋め込むURL
-    .setAuthor("minecraft Server Rule") //Embedのアウター
-    .setThumbnail("https://github.com/KuronekoServer/typing-web/blob/main/kuroneko.jpg?raw=true")　//Embedのサムネイル
-    .addField("第1条", "serverに負荷を掛けない")　//Embedのフィールド
-    .addField("第2条", "サイバー攻撃をしない(DDoSやDoSなど")　//Embedのフィールド
-    .addField("第3条", "TNTなどを使わない")　//Embedのフィールド
-    .addField("第4条", "IPを第三者に教えない")　//Embedのフィールド
-    .addField("第5条", "x-rayなどのチートを使わない。x-rayのテクスチャだけでも処罰対象")　//Embedのフィールド
-    .addField("第6条", "人のものを勝手に取ったり、壊したりしない")　//Embedのフィールド
-    .addField("第7条", "BAN等の処分については、運営メンバー内での協議で事前の確認なく行うことができるものとし、このルールは運営内で認可され、公表されることによって変更を行えるものとする")　//Embedのフィールド
-    .setFooter("KuronekoServer")　//Embedのフッター
-    .setColor("RANDOM")　//Embedのカラー
-    .setTimestamp();
-    
-    message.channel.send(embed); //Embedを送信
-     }
 })
 
    
