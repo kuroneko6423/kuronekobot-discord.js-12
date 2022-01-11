@@ -445,6 +445,10 @@ client.on("message", message => {
 
 client.on('message', async message => {
 
+  if (message.author.bot) {
+   retuen;     
+  }
+
   if (message.content == 'こんにちは') {
     message.channel.send('...こんにちは～')
   }
