@@ -136,14 +136,23 @@ client.on('ready', async () => {
                         "name": "!BAN メンション",
                         "value": "緊急でBANコマンドは無効化しています。 開発者募集中です！https://kuroneko6423.com/Application",
                         "inline": false
+		    },
+                    {
+                        "name": "!omikuji",
+                        "value": "コマンドの通りおみくじだよ",
+                        "inline": false
                     }]
             }
         }
         message.channel.send(embed);
     }
 
-
-
+if (message.content === "!omikuji") {
+  let arr = ["大吉", "中吉", "小吉", "吉", "凶", "大凶"];
+  var random = Math.floor(Math.random() * arr.length);
+  var result = arr[random];
+  message.reply(result);
+}
 
     if (message.content == "!ping") {
         message.channel.send(` Ping を確認しています...`).then((pingcheck) => {
