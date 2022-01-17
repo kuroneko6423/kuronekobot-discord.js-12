@@ -5,6 +5,7 @@ const prefix = '!'
 let connections = {};
 let speak_chs = {};
 
+BotTOKEN = "Token"
 
 client.on('ready', async () => {
     //This will get the amount of servers and then return it.
@@ -557,4 +558,4 @@ if(message.content === "!ban") { //もしメッセージが「!servers」なら
     message.channel.send(`緊急でBANコマンドは無効化しています。 開発者募集中です！https://kuroneko6423.com/Application`); }
 })
 
-client.login("ODk0MDc1OTY2MjI0MjIwMjMz.YVkvIQ.ayyfDWhS_KokGOec9zavfJfUTpY").catch(err => console.warn(err));
+client.login(BotTOKEN).catch(err => console.warn(err));
