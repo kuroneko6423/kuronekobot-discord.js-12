@@ -119,6 +119,11 @@ client.on('ready', async () => {
                         "inline": false
                     },
                     {
+                        "name": "!beserver [IP]",
+                        "value": "MinecraftServer(be)情報を出せます",
+                        "inline": false
+                    },
+                    {
                         "name": "!server [IP]",
                         "value": "MinecraftServer情報を出せます",
                         "inline": false
