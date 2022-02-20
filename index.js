@@ -5,7 +5,14 @@ const prefix = '!'
 let connections = {};
 let speak_chs = {};
 
-BotTOKEN = "Token"
+BotTOKEN = "tokenだお"
+
+//Bot自身の発言を無視する呪い
+client.on('message', message => {
+    if (message.author.bot) {
+        return;
+    }
+});
 
 client.on('ready', async () => {
     //This will get the amount of servers and then return it.
@@ -21,8 +28,42 @@ client.on('ready', async () => {
 
 
 .on("message", async message => {
+    if (message.author.bot) {  //bot無視
+        return;
 
-    if (message.content == "!sporrt") {
+    } else if (message.content === '!gsh') {  //Google検索
+        flag = 1;
+        let msg = '検索したいキーワード';
+        let channel = message.channel;
+        let author = message.author.username;
+        message.reply(msg)
+            .then(message => console.log(`Sent message: ${msg}`))
+            .catch(console.error);
+        if (flag === 1) {
+            client.on("message", message => {
+                if (message.author.bot) {
+                    return;
+                } else {
+                    flag = 0;
+                    let keyword = message.content;
+                    let keyword_split = keyword.split(" ");
+                    let channel = message.channel;
+                    let author = message.author.username;
+                    let url_val = 'https://www.google.com/search?q='
+                    for (let i = 0; i < keyword_split.length; i++) {
+                        url_val += "+" + encodeURI(keyword_split[i])
+                    }
+                    message.reply(url_val)
+                        .then(message => console.log(`Sent message: ${url_val}`))
+                        .catch(console.error);
+                    return;
+                }
+            });
+        }
+        return;
+    }
+
+    if (message.content == "!support") {
         const embed = {
             embed: {
                 title: "サポートサーバーです",
@@ -64,7 +105,7 @@ client.on('ready', async () => {
                         " inline": false
                     },
                     {
-                        "name": "!sporrt",
+                        "name": "!support",
                         "value": "サポサバのURLを表示します",
                         "inline": false
                     },
@@ -129,7 +170,7 @@ client.on('ready', async () => {
                         "inline": false
                     },
                     {
-                        "name": "!uuis [MCID]",
+                        "name": "!uuid [MCID]",
                         "value": "MinecraftユーザーUUID情報を出せます",
                         "inline": false
                     },
@@ -343,6 +384,84 @@ if (message.content === "!omikuji") {
         };
         message.channel.send(embed);
     }
+
+if (message.content == "!MinecraftRule") {
+        const embed = {
+            "embed": {
+                "title": "～～minecraftServer Rule",
+                "description": "",
+                "color": 0xffff15,
+                "fields": [
+                    {
+                        "name": "マインクラフト",
+                        "value": "禁止事項",
+                        "inline": false
+                    },
+                    {
+                        "name": "第１条",
+                        "value": "荒らし禁止",
+                        "inline": false
+                    },
+                    {
+                        "name": "第２条",
+                        "value": "チート機能禁止（xrayなど）",
+                        "inline": false
+                    },
+                    {
+                        "name": "第３条",
+                        "value": "暴言禁止",
+                        " inline": false
+                    },
+                    {
+                        "name": "第４条",
+                        "value": "窃盗禁止",
+                        "inline": false
+                    },
+                    {
+                        "name": "第５条",
+                        "value": "他人の建築物を勝手に改造するのも禁止",
+                        "inline": false
+                    },
+                    {
+                        "name": "第６条",
+                        "value": "ophack禁止",
+                        "inline": false
+                    },
+                    {
+                        "name": "第7条",
+                        "value": "これのルールに対して変更等がある場合には運営側がルールを変更する場合がある",
+                        "inline": false
+                    },
+                    {
+                        "name": "第8条",
+                        "value": "第１条から第7条までに同意できる方のみserverに参加を許可する",
+                        "inline": false
+                    },
+                    {
+                        "name": "その他",
+                        "value": "これに対して運営は変更を加えられるものとする",
+                        "inline": false
+                    },
+                    {
+                        "name": "その他ルール",
+                        "value": "注意点等",
+                        "inline": false
+                    },
+                    {
+                        "name": "第１条",
+                        "value": "鯖の自作発言は禁止",
+                        "inline": false
+                    },
+                    {
+                        "name": "第２条",
+                        "value": "配信,録画する際は運営に必ず言ってください。",
+                        "inline": false
+                    }]
+            }
+        }
+        message.channel.send(embed);
+    }
+
 })
 
 
@@ -472,10 +591,6 @@ client.on("message", message => {
 
 client.on('message', async message => {
 
-  if (message.author.bot) {
-   retuen;     
-  }
-
   if (message.content == 'こんにちは') {
     message.channel.send('...こんにちは～')
   }
@@ -562,5 +677,6 @@ client.on("message", message => {
 if(message.content === "!ban") { //もしメッセージが「!servers」なら
     message.channel.send(`緊急でBANコマンドは無効化しています。 開発者募集中です！https://kuroneko6423.com/Application`); }
 })
+
 
 client.login(BotTOKEN).catch(err => console.warn(err));
