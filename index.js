@@ -5,7 +5,7 @@ const prefix = '!'
 let connections = {};
 let speak_chs = {};
 
-BotTOKEN = "tokenだお"
+BotTOKEN = "TOKEN"
 
 //Bot自身の発言を無視する呪い
 client.on('message', message => {
@@ -28,40 +28,6 @@ client.on('ready', async () => {
 
 
 .on("message", async message => {
-    if (message.author.bot) {  //bot無視
-        return;
-
-    } else if (message.content === '!gsh') {  //Google検索
-        flag = 1;
-        let msg = '検索したいキーワード';
-        let channel = message.channel;
-        let author = message.author.username;
-        message.reply(msg)
-            .then(message => console.log(`Sent message: ${msg}`))
-            .catch(console.error);
-        if (flag === 1) {
-            client.on("message", message => {
-                if (message.author.bot) {
-                    return;
-                } else {
-                    flag = 0;
-                    let keyword = message.content;
-                    let keyword_split = keyword.split(" ");
-                    let channel = message.channel;
-                    let author = message.author.username;
-                    let url_val = 'https://www.google.com/search?q='
-                    for (let i = 0; i < keyword_split.length; i++) {
-                        url_val += "+" + encodeURI(keyword_split[i])
-                    }
-                    message.reply(url_val)
-                        .then(message => console.log(`Sent message: ${url_val}`))
-                        .catch(console.error);
-                    return;
-                }
-            });
-        }
-        return;
-    }
 
     if (message.content == "!support") {
         const embed = {
@@ -674,9 +640,12 @@ client.on('message', async message => {
 
 
 client.on("message", message => {
-if(message.content === "!ban") { //もしメッセージが「!servers」なら
+if(message.content === "!ban") { 
     message.channel.send(`緊急でBANコマンドは無効化しています。 開発者募集中です！https://kuroneko6423.com/Application`); }
 })
 
+
+console.log('入っているサーバー'+client.guilds.cache.map(a => a.name));
+console.log(require('discord.js').version)
 
 client.login(BotTOKEN).catch(err => console.warn(err));
